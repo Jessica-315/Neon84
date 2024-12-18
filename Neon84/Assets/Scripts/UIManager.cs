@@ -15,22 +15,43 @@ public class UIManager : MonoBehaviour
     // HUDPanel:        0       MainPanel:      0
     // PausePanel:      1       PlayGamePanel:  1
     // GameOverPanel:   2       CreditsPanel:   2
-    // Settings Panel:  3       SettingsPanel:  3
+    //                          SettingsPanel:  3       
 
     public GameObject[] panelArray;
 
 
-    
-    public AudioMixer audioMixer;
+    // Estos sliders solo se referencian en la escena del menu principal (MenuScene)
+    [SerializeField] private Slider musicSlider;
+    [SerializeField] private Slider sfxSlider;
 
-    private float musicVolume;
-    private float SFxVolume;
+
 
 
     // Start is called before the first frame update
     void Start()
     {
+
         ShowDefault();
+
+        if (idScene == 0)
+        {
+            AudioManager.Instance.PlayMusic(0);
+            musicSlider.value = AudioManager.Instance.GetMusicVolume();
+            sfxSlider.value = AudioManager.Instance.GetSFxVolume();
+            if (PlayerPrefs.GetInt("PanelPP") == 2)
+            {
+                ShowSettings();
+            }
+        }
+        else
+        {
+            AudioManager.Instance.PlayMusic(1);
+            if (PlayerPrefs.GetInt("PanelPP") == 2)
+            {
+                ShowPause();
+            }
+        }
+        
     }
 
     // Se muestra HUDPanel o MainPanel
@@ -95,16 +116,18 @@ public class UIManager : MonoBehaviour
         Application.Quit();
     }
 
-    public void SetMusicVolume(float volume)
-    {
-        musicVolume = volume;
-        audioMixer.SetFloat("MusicVolume", musicVolume);
-    }
 
-    public void SetSFxVolume(float volume)
+
+    public void ChangeButtonExitSettings(ScenesManager scenesManager)
     {
-        SFxVolume = volume;
-        audioMixer.SetFloat("SFxVolume", SFxVolume);
+        if (PlayerPrefs.GetInt("PanelPP") == 2)
+        {
+            scenesManager.LoadGameSceneSettingsPanel();
+        }
+        else
+        {
+            ShowDefault();
+        }
     }
 
 

@@ -8,9 +8,9 @@ public class PlayerSFx : MonoBehaviour
     public AudioSource audioSource;
     public AudioClip[] SFx;
 
-    public void PlayEFxAtaack()
+    public void PlayEFx(int index)
     {
-        audioSource.PlayOneShot(SFx[0]);
+        audioSource.PlayOneShot(SFx[index]);
     }
 
 }

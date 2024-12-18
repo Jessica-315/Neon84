@@ -15,7 +15,8 @@ public class PlayerController : MonoBehaviour
 
         if (Input.GetMouseButton(0))
         {
-            this.gameObject.SendMessage("PlayEFxAtaack");
+            //this.gameObject.SendMessage("PlayEFx", 0);
+            AudioManager.Instance.PlaySoundById(0);
         }
     }
 }
