@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerSFx : MonoBehaviour
@@ -12,5 +10,15 @@ public class PlayerSFx : MonoBehaviour
     {
         audioSource.PlayOneShot(SFx[index]);
     }
+
+    /*
+    public Skybox skybox;
+
+    public void ChangeSkybox()
+    {
+        skybox = GetComponent<Skybox>();
+        skybox.material = 
+    }
+    */
 
 }
