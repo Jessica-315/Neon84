@@ -1,6 +1,7 @@
 using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
+using UnityEngine.Timeline;
 
 public class GameManager : MonoBehaviour
 {
@@ -18,9 +19,11 @@ public class GameManager : MonoBehaviour
     public Slider foodSlider;
 
 
+    //[SerializeField] private TimelineClip clip;
+
+
     void Start()
     {
-        
     }
 
     // Update is called once per frame
