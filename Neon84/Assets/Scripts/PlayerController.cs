@@ -24,8 +24,12 @@ public class PlayerController : MonoBehaviour
         characterAnimator = GetComponent<Animator>();
         characterRigidBody = GetComponent<Rigidbody>();
         directionPlayerLateralCamera = false;
-        gameplayReady = true;      /// ESTE TIENE QUE ESTAR EN FALSE
+        gameplayReady = true;
         lateral = true;
+        if (characterAnimator == null)
+        {
+            Debug.LogError("No se encontró un Animator en este GameObject o sus hijos.");
+        }
     }
 
     void Update()
@@ -98,6 +102,11 @@ public class PlayerController : MonoBehaviour
     public void ActivateGameplay()
     {
         gameplayReady = true;
+    }
+
+    public void DesactivateGameplay()
+    {
+        gameplayReady = false;
     }
 
     public void ActivateIntro()
